@@ -7,12 +7,17 @@ import { api } from "../utils/api";
 import React, { useState } from "react";
 
 const Home: NextPage = () => {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const createBuildMutation = api.builds.createBuild.useMutation();
+
   const [build, setBuild] = useState("");
   const [champion, setChampion] = useState("fiora");
 
-  const handleSubmitCreateBuild = (e: React.FormEvent) => {
+  const handleSubmitCreateBuild = async (e: React.FormEvent) => {
     e.preventDefault();
+    await createBuildMutation.mutateAsync({
+      champion,
+      build,
+    });
   };
 
   return (
@@ -23,36 +28,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <h1>Create a new build!</h1>
-        <form
-          onSubmit={handleSubmitCreateBuild}
-          className="flex flex-col gap-4"
-          action=""
+        <h1>Welcome to LOL Builds</h1>
+        <Link
+          className="rounded-md border border-white p-2"
+          href="/create-build"
         >
-          <label htmlFor="champions">Champion</label>
-          <select
-            className="text-black"
-            name=""
-            id="champions"
-            value={champion}
-            onChange={(e) => setChampion(e.target.value)}
-          >
-            <option value="fiora">Fiora</option>
-            <option value="zyra">Zyra</option>
-            <option value="leona">Leona</option>
-            <option value="yummi">Yummi</option>
-          </select>
-
-          <label htmlFor="build">Build</label>
-          <textarea
-            className="text-black"
-            value={build}
-            id="build"
-            onChange={(e) => setBuild(e.target.value)}
-          />
-
-          <button>Submit</button>
-        </form>
+          Create a build
+        </Link>
       </main>
     </>
   );
