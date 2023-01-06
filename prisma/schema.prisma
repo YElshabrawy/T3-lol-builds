@@ -64,3 +64,9 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model BuildOrder {
+    id       String @id @default(cuid())
+    champion String
+    build    String
+}
