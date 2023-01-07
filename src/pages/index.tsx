@@ -35,6 +35,12 @@ const Home: NextPage = () => {
         >
           Create a build
         </Link>
+        <Link
+          className="rounded-md border border-white p-2"
+          href="/show-builds"
+        >
+          Show all builds
+        </Link>
       </main>
     </>
   );

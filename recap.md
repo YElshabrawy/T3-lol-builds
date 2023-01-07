@@ -42,3 +42,4 @@
 
 1. `npm run dev`
 2. `npx prisma migrate dev`
+3. `npx prisma studio`: if it does not work turn off postgres in services

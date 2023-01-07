@@ -4,12 +4,14 @@ import Link from "next/link";
 
 import { api } from "../utils/api";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const createBuildMutation = api.builds.createBuild.useMutation();
 
   const [build, setBuild] = useState("");
   const [champion, setChampion] = useState("fiora");
+  const router = useRouter();
 
   const handleSubmitCreateBuild = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const Home: NextPage = () => {
       champion,
       build,
     });
+    router.push("/show-builds");
   };
 
   return (

@@ -12,7 +12,7 @@ export const buildsRouter = createTRPCRouter({
       return build;
     }),
 
-  getAllBuilds: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.buildOrder.findMany();
+  getAllBuilds: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.buildOrder.findMany();
   }),
 });
